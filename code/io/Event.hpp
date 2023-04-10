@@ -26,6 +26,7 @@ enum class KeyCodes : uint8_t
     LeftArrow,
     RightArrow,
     DownArrow,
+    SPACE,
 
     kInvalid
 };

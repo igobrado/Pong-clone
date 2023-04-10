@@ -28,6 +28,9 @@ static const KeyCodes toKeyCode(uint32_t keycode)
             return KeyCodes::LeftArrow;
         case SDL_SCANCODE_RIGHT:
             return KeyCodes::RightArrow;
+        case SDLK_SPACE:
+            return KeyCodes::SPACE;
+
         default:
             return KeyCodes::kInvalid;
     }

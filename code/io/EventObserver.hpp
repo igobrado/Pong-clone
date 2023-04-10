@@ -25,7 +25,6 @@ public:
     void attachListener(std::reference_wrapper<IListener> const& listener) override;
     void detachListener(std::reference_wrapper<IListener> const& listener) override;
 
-protected:
 private:
     std::unordered_map<std::size_t, std::vector<std::reference_wrapper<IListener>>> mListeners;
 };
