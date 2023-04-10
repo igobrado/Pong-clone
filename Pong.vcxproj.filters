@@ -77,12 +77,6 @@
     <ClInclude Include="code\game\StateMachine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="code\game\IState.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="code\traits\TypeTraits.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="code\game\detail\IntroState.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

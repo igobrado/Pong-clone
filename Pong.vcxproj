@@ -176,7 +176,6 @@
     <ClInclude Include="code\game\detail\EndState.hpp" />
     <ClInclude Include="code\game\detail\GameState.hpp" />
     <ClInclude Include="code\game\detail\IntroState.hpp" />
-    <ClInclude Include="code\game\IState.hpp" />
     <ClInclude Include="code\game\Player.hpp" />
     <ClInclude Include="code\game\Pong.hpp" />
     <ClInclude Include="code\game\StateMachine.hpp" />
@@ -186,7 +185,6 @@
     <ClInclude Include="code\io\KeyboardListener.hpp" />
     <ClInclude Include="code\io\EventObserver.hpp" />
     <ClInclude Include="code\io\WindowEventListener.hpp" />
-    <ClInclude Include="code\traits\TypeTraits.hpp" />
     <ClInclude Include="code\utility\Clock.hpp" />
   </ItemGroup>
   <ItemGroup>

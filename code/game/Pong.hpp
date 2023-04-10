@@ -6,6 +6,7 @@
 #include <game/Player.hpp>
 #include <game/StateMachine.hpp>
 #include <io/EventObserver.hpp>
+#include <utility/Clock.hpp>
 
 class Pong
 {
@@ -19,10 +20,11 @@ private:
     void setupObservers();
 
     display::Window            mWindow;
-    statemachine::StateMachine mStateMachine;
     Player                     mPlayerOne;
     Player                     mPlayerTwo;
     event::EventObserver       mObserver;
+    statemachine::StateMachine mStateMachine;
+    utils::Clock               mClock;
 };
 
 #endif  // !PONG_HPP

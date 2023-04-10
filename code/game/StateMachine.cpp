@@ -7,9 +7,10 @@ static constexpr uint8_t kIntroType        = static_cast<uint8_t>(State::kIntro)
 static constexpr uint8_t kGameStateType    = static_cast<uint8_t>(State::kGame);
 static constexpr uint8_t kEndGameStateType = static_cast<uint8_t>(State::kEnd);
 
-StateMachine::StateMachine()  //
+StateMachine::StateMachine(event::IObserver& observer)  //
     : mStates{}
     , mCurrentState{ State::kIntro }
+    , mObserver{ observer }
 {
     initCurrentState(mCurrentState);
 }
@@ -22,6 +23,7 @@ void StateMachine::processChanges()
             if (std::get<kIntroType>(mStates).shouldExchangeState())
             {
                 exchangeState(State::kGame);
+                mObserver.detachListener(std::get<kIntroType>(mStates));
             }
             break;
         case statemachine::State::kGame:
@@ -92,6 +94,7 @@ void StateMachine::initCurrentState(State state)
     {
         case statemachine::State::kIntro:
             std::get<kIntroType>(mStates).init();
+            mObserver.attachListener(std::get<kIntroType>(mStates));
             break;
         case statemachine::State::kGame:
             std::get<kGameStateType>(mStates).init();

@@ -9,6 +9,7 @@
 #include <game/detail/EndState.hpp>
 #include <game/detail/GameState.hpp>
 #include <game/detail/IntroState.hpp>
+#include <io/EventObserver.hpp>
 
 namespace statemachine
 {
@@ -28,7 +29,7 @@ class StateMachine
             statemachine::detail::EndState>;
 
 public:
-    StateMachine();
+    StateMachine(event::IObserver& observer);
 
     void processChanges();
 
@@ -42,6 +43,7 @@ protected:
 private:
     StateMachineTransitionOrder mStates;
     State                       mCurrentState;
+    event::IObserver&           mObserver;
 };
 
 }  // namespace statemachine
