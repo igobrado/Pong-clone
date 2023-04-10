@@ -162,6 +162,7 @@
     <ClCompile Include="code\io\WindowEventListener.cpp" />
     <ClCompile Include="code\starter\main.cpp" />
     <ClCompile Include="code\display\impl\Window.cpp" />
+    <ClCompile Include="code\utility\Clock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\display\common\Common.hpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="code\io\EventObserver.hpp" />
     <ClInclude Include="code\io\WindowEventListener.hpp" />
     <ClInclude Include="code\traits\TypeTraits.hpp" />
+    <ClInclude Include="code\utility\Clock.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
