@@ -16,10 +16,11 @@ public:
     void setColor(Color const& color) override;
     void setDimensions(ObjectDimensions const& dimensions) override;
 
-    ObjectDimensions const& getDimensions() override;
+    ObjectDimensions const& getDimension() const override;
     Color const&            getColor() const override;
     Pos const&              getPosition() const override;
-    ObjectType              getObjectType() override;
+    ObjectType              getObjectType() const override;
+
 
 private:
     Color            mColor;

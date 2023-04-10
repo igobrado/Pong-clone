@@ -24,7 +24,7 @@ void Rectangle::setDimensions(ObjectDimensions const& dimensions)
     mDimensions = dimensions;
 }
 
-ObjectDimensions const& Rectangle::getDimensions()
+ObjectDimensions const& Rectangle::getDimension() const
 {
     return mDimensions;
 }
@@ -39,7 +39,7 @@ Pos const& Rectangle::getPosition() const
     return mPosition;
 }
 
-ObjectType Rectangle::getObjectType()
+ObjectType Rectangle::getObjectType() const
 {
     return ObjectType::kRectangle;
 }

@@ -70,9 +70,13 @@ void Renderer::drawRect(objects::IGameObject& gameObject)
 {
     auto const& color      = gameObject.getColor();
     auto const& position   = gameObject.getPosition();
-    auto const& dimensions = gameObject.getDimensions();
+    auto const& dimensions = gameObject.getDimension();
 
-    SDL_Rect rect{ position.x, position.y, dimensions.width, dimensions.height };
+    SDL_Rect rect{ .x = static_cast<int>(position.x),
+                   .y = static_cast<int>(position.y),
+                   .w = static_cast<int>(dimensions.width),
+                   .h = static_cast<int>(dimensions.height) };
+
     applyColor(color);
 
     SDL_RenderFillRect(*mRendererHolder, &rect);

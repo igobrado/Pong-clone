@@ -38,10 +38,10 @@ public:
     virtual void setColor(Color const& color)                      = 0;
     virtual void setDimensions(ObjectDimensions const& dimensions) = 0;
 
-    virtual ObjectDimensions const& getDimensions()     = 0;
-    virtual Color const&            getColor() const    = 0;
-    virtual Pos const&              getPosition() const = 0;
-    virtual ObjectType              getObjectType()     = 0;
+    virtual ObjectDimensions const& getDimension() const  = 0;
+    virtual Color const&            getColor() const      = 0;
+    virtual Pos const&              getPosition() const   = 0;
+    virtual ObjectType              getObjectType() const = 0;
 };
 
 }  // namespace objects
