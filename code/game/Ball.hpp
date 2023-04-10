@@ -5,15 +5,14 @@
 namespace game
 {
 
-class Ball
+class Ball : public ::objects::Rectangle
 {
 public:
     Ball();
 
-    void updateMovement(float const deltaTime);
+    void updateMovement(float const deltaTime) override;
 
 private:
-    ::objects::Rectangle        mBall;
     float                       mSpeed;
     std::pair<int32_t, int32_t> mMoveRegion;
     std::pair<float, float>     mDirection;

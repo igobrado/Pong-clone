@@ -22,6 +22,7 @@ public:
     ObjectType              getObjectType() const override;
 
     bool isCollided(IGameObject const& other) const override;
+    void updateMovement(float const deltaTime) override;
 
 private:
     Color            mColor;

@@ -63,4 +63,8 @@ bool Rectangle::isCollided(IGameObject const& other) const
     return SDL_HasIntersection(&rectOne, &rectTwo);
 }
 
+void Rectangle::updateMovement(float const)
+{
+}
+
 }  // namespace objects

@@ -4,7 +4,7 @@ namespace game
 {
 
 Ball::Ball()  //
-    : mBall{ display::core::Red, { 100, 100 }, { 20, 20 } }
+    : ::objects::Rectangle{ display::core::Red, { 100, 100 }, { 30, 30 } }
     , mSpeed{ 0.0f }
     , mMoveRegion{ 1000, 1000 }  // TODO: Set globally
     , mDirection{ 7., 7. }
@@ -13,7 +13,7 @@ Ball::Ball()  //
 
 void Ball::updateMovement(float const deltaTime)
 {
-    auto currentPosition                    = mBall.getPosition();
+    auto currentPosition                    = getPosition();
     auto const& [screenWidth, screenHeight] = mMoveRegion;
     auto& [directionX, directionY]          = mDirection;
 
@@ -26,8 +26,7 @@ void Ball::updateMovement(float const deltaTime)
         directionY = -directionY;
     }
 
-    auto const& pos = mBall.getPosition();
-    mBall.setPosition({ pos.x + directionX, pos.y + directionY });
+    setPosition({ currentPosition.x + directionX, currentPosition.y + directionY });
 }
 
 }  // namespace game

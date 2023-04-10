@@ -44,6 +44,7 @@ public:
     virtual ObjectType              getObjectType() const = 0;
 
     virtual bool isCollided(IGameObject const& other) const = 0;
+    virtual void updateMovement(float const deltaTime)      = 0;
 };
 
 }  // namespace objects
