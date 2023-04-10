@@ -31,40 +31,62 @@ void StateMachine::exchangeState(State state)
         {
             mCurrentState = toTransit;
         }
-    }
 
-    initCurrentState(mCurrentState);
+        initCurrentState(mCurrentState);
+    }
 }
 
 void StateMachine::updateCurrentState(float const deltaTime)
 {
-    if (mCurrentState == State::kIntro)
+    switch (mCurrentState)
     {
-        std::get<detail::IntroState::Type>(mStates).update(deltaTime);
+        case statemachine::State::kIntro:
+            std::get<detail::IntroState::Type>(mStates).update(deltaTime);
+            break;
+        case statemachine::State::kGame:
+            std::get<detail::GameState::Type>(mStates).update(deltaTime);
+            break;
+        case statemachine::State::kEnd:
+            std::get<detail::EndState::Type>(mStates).update(deltaTime);
+            break;
+        default:
+            break;
     }
-    else if (mCurrentState == State::kGame)
+}
+
+void StateMachine::drawObjects(display::IWindow& window)
+{
+    switch (mCurrentState)
     {
-        std::get<detail::GameState::Type>(mStates).update(deltaTime);
-    }
-    else if (mCurrentState == State::kEnd)
-    {
-        std::get<detail::EndState::Type>(mStates).update(deltaTime);
+        case statemachine::State::kIntro:
+            std::get<detail::IntroState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            break;
+        case statemachine::State::kGame:
+            std::get<detail::GameState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            break;
+        case statemachine::State::kEnd:
+            std::get<detail::EndState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            break;
+        default:
+            break;
     }
 }
 
 void StateMachine::initCurrentState(State state)
 {
-    if (mCurrentState == State::kIntro)
+    switch (mCurrentState)
     {
-        std::get<detail::IntroState::Type>(mStates).init();
-    }
-    else if (mCurrentState == State::kGame)
-    {
-        std::get<detail::GameState::Type>(mStates).init();
-    }
-    else if (mCurrentState == State::kEnd)
-    {
-        std::get<detail::EndState::Type>(mStates).init();
+        case statemachine::State::kIntro:
+            std::get<detail::IntroState::Type>(mStates).init();
+            break;
+        case statemachine::State::kGame:
+            std::get<detail::GameState::Type>(mStates).init();
+            break;
+        case statemachine::State::kEnd:
+            std::get<detail::EndState::Type>(mStates).init();
+            break;
+        default:
+            break;
     }
 }
 

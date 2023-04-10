@@ -1,5 +1,6 @@
 #ifndef ENDSTATE_HPP
 #define ENDSTATE_HPP
+#include <algorithm>
 #include <array>
 #include <memory>
 
@@ -25,6 +26,11 @@ public:
 
     void updateImpl(float const deltaTime)
     {
+    }
+
+    void forEachDrawable(std::function<void(std::unique_ptr<objects::IGameObject>&)> callback)
+    {
+        std::for_each(mGameObjects.begin(), mGameObjects.end(), callback);
     }
 
 private:

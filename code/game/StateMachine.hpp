@@ -5,6 +5,7 @@
 #include <tuple>
 #include <unordered_map>
 
+#include <display/interface/IWindow.hpp>
 #include <game/detail/EndState.hpp>
 #include <game/detail/GameState.hpp>
 #include <game/detail/IntroState.hpp>
@@ -24,6 +25,7 @@ public:
 
     void exchangeState(State state);
     void updateCurrentState(float const deltaTime);
+    void drawObjects(display::IWindow& window);
 
 protected:
     void initCurrentState(State state);

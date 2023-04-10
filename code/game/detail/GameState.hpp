@@ -27,6 +27,11 @@ public:
     {
     }
 
+    void forEachDrawable(std::function<void(std::unique_ptr<objects::IGameObject>&)> callback)
+    {
+        std::for_each(mGameObjects.begin(), mGameObjects.end(), callback);
+    }
+
 private:
     std::array<std::unique_ptr<objects::IGameObject>, ObjectQuantity> mGameObjects;
 };

@@ -32,8 +32,10 @@ bool Pong::run()
     {
         mObserver.pollEvent();
 
+        // TODO: Calculate delta time
+        mStateMachine.updateCurrentState(0.0f);
         mWindow.clear(display::core::White);
-        // sdlWindow.draw(rect);
+        mStateMachine.drawObjects(mWindow);
         mWindow.commit();
     }
 
