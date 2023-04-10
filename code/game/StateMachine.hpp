@@ -13,6 +13,13 @@
 namespace statemachine
 {
 
+enum class State : uint8_t
+{
+    kIntro = 0,
+    kGame,
+    kEnd
+};
+
 class StateMachine
 {
     using StateMachineTransitionOrder = std::tuple<  //
@@ -22,6 +29,8 @@ class StateMachine
 
 public:
     StateMachine();
+
+    void processChanges();
 
     void exchangeState(State state);
     void updateCurrentState(float const deltaTime);

@@ -3,35 +3,49 @@
 namespace statemachine
 {
 
-static const std::unordered_map<State, State> kStateMapping{ { State::kIntro, State::kGame },
-                                                             { State::kGame, State::kEnd },
-                                                             { State::kEnd, State::kIntro } };
+static constexpr uint8_t kIntroType        = static_cast<uint8_t>(State::kIntro);
+static constexpr uint8_t kGameStateType    = static_cast<uint8_t>(State::kGame);
+static constexpr uint8_t kEndGameStateType = static_cast<uint8_t>(State::kEnd);
 
 StateMachine::StateMachine()  //
     : mStates{}
     , mCurrentState{ State::kIntro }
 {
+    initCurrentState(mCurrentState);
+}
+
+void StateMachine::processChanges()
+{
+    switch (mCurrentState)
+    {
+        case statemachine::State::kIntro:
+            if (std::get<kIntroType>(mStates).shouldExchangeState())
+            {
+                exchangeState(State::kGame);
+            }
+            break;
+        case statemachine::State::kGame:
+            if (std::get<kGameStateType>(mStates).shouldExchangeState())
+            {
+                exchangeState(State::kEnd);
+            }
+            break;
+        case statemachine::State::kEnd:
+            if (std::get<kEndGameStateType>(mStates).shouldExchangeState())
+            {
+                exchangeState(State::kGame);
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 void StateMachine::exchangeState(State state)
 {
     if (state != mCurrentState)
     {
-        auto toTransit = kStateMapping.at(state);
-
-        if (static_cast<uint8_t>(toTransit) == detail::IntroState::Type)
-        {
-            mCurrentState = toTransit;
-        }
-        else if (static_cast<uint8_t>(toTransit) == detail::GameState::Type)
-        {
-            mCurrentState = toTransit;
-        }
-        else if (static_cast<uint8_t>(toTransit) == detail::EndState::Type)
-        {
-            mCurrentState = toTransit;
-        }
-
+        mCurrentState = state;
         initCurrentState(mCurrentState);
     }
 }
@@ -41,13 +55,13 @@ void StateMachine::updateCurrentState(float const deltaTime)
     switch (mCurrentState)
     {
         case statemachine::State::kIntro:
-            std::get<detail::IntroState::Type>(mStates).update(deltaTime);
+            std::get<kIntroType>(mStates).update(deltaTime);
             break;
         case statemachine::State::kGame:
-            std::get<detail::GameState::Type>(mStates).update(deltaTime);
+            std::get<kGameStateType>(mStates).update(deltaTime);
             break;
         case statemachine::State::kEnd:
-            std::get<detail::EndState::Type>(mStates).update(deltaTime);
+            std::get<kEndGameStateType>(mStates).update(deltaTime);
             break;
         default:
             break;
@@ -59,13 +73,13 @@ void StateMachine::drawObjects(display::IWindow& window)
     switch (mCurrentState)
     {
         case statemachine::State::kIntro:
-            std::get<detail::IntroState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            std::get<kIntroType>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
             break;
         case statemachine::State::kGame:
-            std::get<detail::GameState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            std::get<kGameStateType>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
             break;
         case statemachine::State::kEnd:
-            std::get<detail::EndState::Type>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
+            std::get<kEndGameStateType>(mStates).forEachDrawable([&window](auto& obj) { window.draw(*obj); });
             break;
         default:
             break;
@@ -77,13 +91,13 @@ void StateMachine::initCurrentState(State state)
     switch (mCurrentState)
     {
         case statemachine::State::kIntro:
-            std::get<detail::IntroState::Type>(mStates).init();
+            std::get<kIntroType>(mStates).init();
             break;
         case statemachine::State::kGame:
-            std::get<detail::GameState::Type>(mStates).init();
+            std::get<kGameStateType>(mStates).init();
             break;
         case statemachine::State::kEnd:
-            std::get<detail::EndState::Type>(mStates).init();
+            std::get<kEndGameStateType>(mStates).init();
             break;
         default:
             break;

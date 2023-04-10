@@ -4,36 +4,62 @@
 #include <memory>
 
 #include <display/interface/IGameObject.hpp>
-#include <game/IState.hpp>
+#include <game/Ball.hpp>
+#include <io/KeyboardListener.hpp>
 
 namespace statemachine
 {
 namespace detail
 {
 
-class IntroState : public IState<IntroState, State::kIntro>
+class IntroState : public event::KeyboardListener
 {
     // will be only 3 objects - texts .. in ideal world this can be configured via json / xml
     static constexpr uint32_t ObjectQuantity = 3;
 
 public:
-    IntroState() = default;
-
-    void init()
+    IntroState()
+        : KeyboardListener{ event::Event{ event::EventType::kKeyboardKeyPressed, event::KeyCodes::SPACE } }
+        , mShouldExchange{ false }
     {
     }
 
-    void updateImpl(float const deltaTime)
+    void init()
     {
+        mBall = std::make_unique<::game::Ball>();
+    }
+
+    void update(float const deltaTime)
+    {
+        mBall->updateMovement(deltaTime);
+    }
+
+    bool shouldExchangeState()
+    {
+        return mShouldExchange;
     }
 
     void forEachDrawable(std::function<void(std::unique_ptr<objects::IGameObject>&)> callback)
     {
-        std::for_each(mGameObjects.begin(), mGameObjects.end(), callback);
+        callback(mBall);
+    }
+
+    void onKeyPressed(event::KeyCodes const eventKeyCode) override
+    {
+        mShouldExchange = true;
+    }
+
+    void onKeyReleased(event::KeyCodes const eventKeyCode) override
+    {
+    }
+
+    void onCleanup() override
+    {
     }
 
 private:
-    std::array<std::unique_ptr<objects::IGameObject>, ObjectQuantity> mGameObjects;
+    std::unique_ptr<objects::IGameObject> mBall;
+    bool                                  mShouldExchange;
 };
 
 }  // namespace detail
