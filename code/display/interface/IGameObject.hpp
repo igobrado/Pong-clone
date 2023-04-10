@@ -42,6 +42,8 @@ public:
     virtual Color const&            getColor() const      = 0;
     virtual Pos const&              getPosition() const   = 0;
     virtual ObjectType              getObjectType() const = 0;
+
+    virtual bool isCollided(IGameObject const& other) const = 0;
 };
 
 }  // namespace objects

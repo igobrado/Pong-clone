@@ -21,6 +21,7 @@ public:
     Pos const&              getPosition() const override;
     ObjectType              getObjectType() const override;
 
+    bool isCollided(IGameObject const& other) const override;
 
 private:
     Color            mColor;
