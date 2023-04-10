@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="code\display\impl\Rectangle.cpp" />
     <ClCompile Include="code\display\impl\Renderer.cpp" />
+    <ClCompile Include="code\game\Ball.cpp" />
     <ClCompile Include="code\game\Player.cpp" />
     <ClCompile Include="code\game\Pong.cpp" />
     <ClCompile Include="code\game\StateMachine.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="code\display\impl\Window.hpp" />
     <ClInclude Include="code\display\interface\IRenderer.hpp" />
     <ClInclude Include="code\display\interface\IWindow.hpp" />
+    <ClInclude Include="code\game\Ball.hpp" />
     <ClInclude Include="code\game\detail\EndState.hpp" />
     <ClInclude Include="code\game\detail\GameState.hpp" />
     <ClInclude Include="code\game\detail\IntroState.hpp" />

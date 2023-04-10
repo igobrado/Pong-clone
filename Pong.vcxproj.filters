@@ -45,6 +45,9 @@
     <ClCompile Include="code\io\WindowEventListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="code\game\Ball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\display\impl\Window.hpp">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="code\io\WindowEventListener.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\game\Ball.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

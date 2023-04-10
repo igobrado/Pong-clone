@@ -10,14 +10,14 @@ namespace core
 
 struct Pos
 {
-    constexpr Pos(int32_t const x, int32_t const y)  //
+    constexpr Pos(float const x, float const y)  //
         : x{ x }
         , y{ y }
     {
     }
 
-    int32_t x;
-    int32_t y;
+    float x;
+    float y;
 };
 
 struct Color
